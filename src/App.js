@@ -24,9 +24,49 @@ function reducer(state, { type, payload }) {
         ...state,
         current: `${state.current || ""}${payload.digit}`,
       };
+    case ACTIONS.CHOOSE_OPERATION:
+      if (state.current == null && state.previous == null) {
+        return state;
+      }
+      if (state.previous == null) {
+        return {
+          ...state,
+          operation: payload.operation,
+          previous: state.current,
+          current: null,
+        };
+      }
+      return {
+        ...state,
+        previous: evaluate(state),
+        operation: payload.operation,
+        current: null,
+      };
     case ACTIONS.CLEAR:
       return {};
   }
+}
+
+function evaluate({ current, previous, operation }) {
+  const prev = parseFloat(previous);
+  const curr = parseFloat(current);
+  if (isNaN(prev) || isNaN(curr)) return "";
+  let computation = "";
+  switch (operation) {
+    case "+":
+      computation = prev + curr;
+      break;
+    case "-":
+      computation = prev - curr;
+      break;
+    case "*":
+      computation = prev * curr;
+      break;
+    case "/":
+      computation = prev / curr;
+      break;
+  }
+  return computation.toString();
 }
 
 function App() {
@@ -58,7 +98,7 @@ function App() {
           <OperationButton operation="+" dispatch={dispatch} />
           <OperationButton operation="-" dispatch={dispatch} />
           <OperationButton operation="/" dispatch={dispatch} />
-          <OperationButton operation="X" dispatch={dispatch} />
+          <OperationButton operation="*" dispatch={dispatch} />
           <DigitButton digit="." dispatch={dispatch} />
           <button
             className="clearBtn"

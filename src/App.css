@@ -5,8 +5,17 @@ body {
   background: linear-gradient(#d2e0f1, #c1c5ef);
 }
 h1 {
+  color: antiquewhite;
+  opacity: 0.5;
   font-family: Verdana, sans-serif;
   font-weight: lighter;
+  text-align: left;
+
+  font-size: 40px;
+  margin-left: 4rem;
+  margin-right: auto;
+  z-index: -1;
+  position: relative;
 }
 .calculatorContainer {
   display: flex;
@@ -19,6 +28,7 @@ h1 {
   padding-top: 10px;
   margin-left: auto;
   margin-right: auto;
+
   justify-content: space-around;
   align-items: center;
 }
@@ -38,8 +48,8 @@ h1 {
   height: auto;
   display: flex;
   padding-left: 9rem;
-  padding-bottom: 1rem;
-  color: antiquewhite;
+  padding-bottom: 3rem;
+  color: rgb(228, 229, 236);
   font-size: 1.5rem;
 }
 .currentScreen {
@@ -65,7 +75,7 @@ h1 {
   align-items: center;
   justify-content: center;
   border: 1px solid gainsboro;
-  border-radius: 16px;
+  border-radius: 6px;
   margin-right: 1rem;
 }
 .equalBtn,
@@ -80,11 +90,13 @@ h1 {
   align-items: center;
   justify-content: center;
   border: 1px solid gainsboro;
-  border-radius: 16px;
+  border-radius: 6px;
   margin-right: 1rem;
 }
 
-.btn:hover {
+.btn:hover,
+.equalBtn:hover,
+.clearBtn:hover {
   background-color: rgb(27, 25, 124);
   color: rgb(224, 244, 114);
 }
